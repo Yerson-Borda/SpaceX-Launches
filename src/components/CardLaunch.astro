@@ -5,9 +5,10 @@ interface Props {
   img: string
   success: boolean
   flightNumber: number
+  name: string
 }
 
-const { success, flightNumber, img, id, details } = Astro.props
+const { success, flightNumber, img, id, details, name } = Astro.props
 const launchStatus = success ? "Success" : "Failure"
 
 /*
@@ -41,14 +42,20 @@ class={`
   >
 
   <h2 class="my-2 text-2xl font-bold tracking-tight text-white">
-    FLight #{flightNumber}
+    {name}
   </h2>
 
-  <p class="mb-4 font-light text-gray-400">
+  <p class="mb-4 font-light text-gray-300">
     {
-      details != null && details?.length > 100
-       ? details.slice(0, 100) + "..." 
-       : details
+      // details != null && details?.length > 100
+      //  ? details.slice(0, 100) + "..." 
+      //  : details
+       
+    (details != null) 
+        ? (details?.length > 100 
+              ? details.slice(0, 100) + "..." 
+              : details) 
+        : "No description specified for this launch"
     }
   </p>
 </header>
